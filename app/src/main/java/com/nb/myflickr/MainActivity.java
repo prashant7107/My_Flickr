@@ -11,11 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements GetFlickrjsonData.OnDataAvailable {
+public class MainActivity extends AppCompatActivity implements GetFlickrjsonData.OnDataAvailable,
+                            RecyclerItemClickListener.OnRecyclerClickListener{
     private static final String TAG = "MainActivity";
     private FlickRecyclerViewAdapter flickRecyclerViewAdapter;
 
@@ -29,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements GetFlickrjsonData
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(this, recyclerView, this));
+
         flickRecyclerViewAdapter = new FlickRecyclerViewAdapter(this, new ArrayList<Photo>());
         recyclerView.setAdapter(flickRecyclerViewAdapter);
 
@@ -79,4 +85,16 @@ public class MainActivity extends AppCompatActivity implements GetFlickrjsonData
         Log.d(TAG, "onDataAvailable: ends");
     }
 
+    @Override
+    public void onItemClick(View view, int position) {
+        Log.d(TAG, "onItemClick: start");
+        Toast.makeText(MainActivity.this, "Normal tap at " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onItemLongClikc(View view, int position) {
+        Log.d(TAG, "onItemLongClikc: start");
+        Toast.makeText(MainActivity.this, "Long tap at " + position, Toast.LENGTH_SHORT).show();
+
+    }
 }

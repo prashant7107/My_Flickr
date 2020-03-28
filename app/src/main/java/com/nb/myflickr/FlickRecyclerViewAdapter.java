@@ -51,7 +51,6 @@ class FlickRecyclerViewAdapter extends RecyclerView.Adapter<FlickRecyclerViewAda
 
     @Override
     public int getItemCount() {
-        Log.d(TAG, "getItemCount: called");
         return ((photoList != null) && (photoList.size() !=0) ? photoList.size() : 0);
     }
 
