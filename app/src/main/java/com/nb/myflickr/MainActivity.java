@@ -1,6 +1,7 @@
 package com.nb.myflickr;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 
@@ -9,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.prefs.PreferenceChangeEvent;
 
 public class MainActivity extends BaseActivity implements GetFlickrjsonData.OnDataAvailable,
                             RecyclerItemClickListener.OnRecyclerClickListener{
@@ -46,9 +49,16 @@ public class MainActivity extends BaseActivity implements GetFlickrjsonData.OnDa
     protected void onResume() {
         Log.d(TAG, "onResume: starts");
         super.onResume();
-        GetFlickrjsonData getFlickrjsonData = new GetFlickrjsonData(this, "https://www.flickr.com/services/feeds/photos_public.gne", "en-us", true);
-        // getFlickrjsonData.executeonSameThread("android,nougat");
-        getFlickrjsonData.execute("android,nougat");
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String queryResult = sharedPreferences.getString(FLICKR_QUERY, "");
+
+        if(queryResult.length() > 0) {
+            GetFlickrjsonData getFlickrjsonData = new GetFlickrjsonData(this, "https://www.flickr.com/services/feeds/photos_public.gne", "en-us", true);
+            // getFlickrjsonData.executeonSameThread("android,nougat");
+            getFlickrjsonData.execute(queryResult);
+        }
+
         Log.d(TAG, "onResume: ends");
     }
 

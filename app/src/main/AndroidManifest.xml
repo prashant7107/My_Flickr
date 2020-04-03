@@ -29,7 +29,7 @@
                     android:name="android.support.PARENT_ACTIVITY"
                     android:value="com.nb.myflickr.MainActivity"/>
                 <meta-data android:name="android.app.searchable"
-                    android:resource="@xml/searchable"/>
+                            android:resource="@xml/searchable"/>
                 <intent-filter>
                     <action android:name="android.intent.action.SEARCH"/>
                 </intent-filter>
