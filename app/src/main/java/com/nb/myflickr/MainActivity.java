@@ -28,7 +28,7 @@ public class MainActivity extends BaseActivity implements GetFlickrjsonData.OnDa
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate:  starts");
+        Log.d(TAG, "onCreate: starts");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

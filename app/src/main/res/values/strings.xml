@@ -13,10 +13,9 @@
     <string name="title_activity_photo_detail">Photo Detail</string>
     <string name="browse_image_description">Downloaded Photo Display</string>
     <string name="photo_title_text">Title : %s</string>
-    <!--  <string name="photo_tags_text">%1$s %2$s %3$s</string> -->
+  <!--  <string name="photo_tags_text">%1$s %2$s %3$s</string> -->
     <string name="photo_tags_text">Tags : %s</string>
     <string name="activity_search">Search</string>
     <string name="searchable_hint">Enter photo tags</string>
     <string name="empty_photo">No photos matching search</string>
-    <string name="title_activity_main2">Main2Activity</string>
 </resources>
